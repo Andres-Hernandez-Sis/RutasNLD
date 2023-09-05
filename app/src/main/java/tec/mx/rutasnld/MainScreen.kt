@@ -1,28 +1,36 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package tec.mx.rutasnld
 
-
-import android.annotation.SuppressLint
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.material.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
-@OptIn(ExperimentalMaterial3Api::class)
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MainScreen(){
+fun MainScreen() {
     val navController = rememberNavController()
-    Scaffold (bottomBar = {}) {
-        BottomNavGraph(navController = navController)
-    }
-}
+    val scaffolState = rememberScrollState()
+    val scope = rememberCoroutineScope()
 
-@Composable
-fun BottomBar(navController: NavHostController){
-    val Screens = listOf(
-        BottomBarScreen.Home,
-        BottomBarScreen.Mapas,
-        BottomBarScreen.Otros
+    val navigation_item = listOf(
+        BottomBarItems.Home,
+        BottomBarItems.Mapas,
+        BottomBarItems.Otros
     )
+
+    Scaffold(
+
+    ) {
+
+    }
+
 }

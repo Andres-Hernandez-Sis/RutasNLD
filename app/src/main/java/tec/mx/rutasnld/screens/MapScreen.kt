@@ -1,8 +1,13 @@
 package tec.mx.rutasnld.screens
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
 fun MapScreen() {
-    TODO("Not yet implemented")
+    Column {
+        Text(text = "Menu de mapa")
+    }
 }
+

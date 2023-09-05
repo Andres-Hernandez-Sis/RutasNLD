@@ -9,18 +9,18 @@ import tec.mx.rutasnld.screens.MapScreen
 import tec.mx.rutasnld.screens.OtherScreen
 
 @Composable
-fun BottomNavGraph(navController: NavHostController){
+fun NavigationHost(navController: NavHostController){
     NavHost(
         navController = navController,
-        startDestination = BottomBarScreen.Home.route)
+        startDestination = BottomBarItems.Home.route)
     {
-        composable(route = BottomBarScreen.Home.route){
+        composable(route = BottomBarItems.Home.route){
             HomeScreen()
         }
-        composable(route = BottomBarScreen.Mapas.route){
+        composable(route = BottomBarItems.Mapas.route){
             MapScreen()
         }
-        composable(route = BottomBarScreen.Otros.route){
+        composable(route = BottomBarItems.Otros.route){
             OtherScreen()
         }
     }
