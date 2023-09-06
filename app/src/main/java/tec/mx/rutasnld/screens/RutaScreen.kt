@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun MapScreen() {
     Column {
-        Text(text = "Menu de mapa")
+        Text(text = "Menu de rutas")
     }
 }
 

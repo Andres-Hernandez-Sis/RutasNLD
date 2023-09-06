@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "tec.mx.rutasnld"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "tec.mx.rutasnld"
@@ -68,6 +68,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.7.1")
+    implementation("androidx.navigation:navigation-compose:2.6.0")
     implementation("androidx.compose.material:material:1.5.0")
 }

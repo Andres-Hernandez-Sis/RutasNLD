@@ -14,13 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import tec.mx.rutasnld.navigation.BottomNav
+import tec.mx.rutasnld.navigation.BottomNavGraph
 import tec.mx.rutasnld.ui.theme.RutasNLDTheme
-
-data class BottomNavigationItems(
-    val title: String,
-    val selectedIcon : ImageVector
-)
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -34,7 +30,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                        MainScreen()
+                        BottomNav()
                 }
             }
         }
