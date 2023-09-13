@@ -7,23 +7,100 @@
     <!-- Incluye la biblioteca Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+
+        #map{
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
-<!-- Crea un contenedor para el mapa -->
 <div id="map" style="width: 100%; height: 900px;"></div>
-
 <script>
-        // Inicializa un mapa de Leaflet
-        var map = L.map('map').setView([27.480925, -99.515360], 13);
+        // Inicializacion un mapa de Leaflet
+        var map = L.map('map').setView([27.4665175,-99.5266303], 13); // El segundo valor es el zoom.
 
-        // Agrega una capa de mapa base (por ejemplo, OpenStreetMap)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+        // Agrega una capa de MAPA BASE (OpenStreetMap)
+        var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+        var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png');
+        var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{maxZoom: 20,subdomains:['mt0','mt1','mt2','mt3']});
 
-        // Agrega un marcador al mapa
-        L.marker([27.480925, -99.515360]).addTo(map)
-            .bindPopup('¡Hola mundo!').openPopup();
-    </script>
+        // Crea una capa de MARCADORES
+        var markersLayer = L.layerGroup();
+
+
+        // Agrega marcadores a la capa de marcadores
+        L.marker([27.480925, -99.515360]).bindPopup('¡Hola mundo!').addTo(markersLayer);
+        L.marker([27.490000, -99.525000]).bindPopup('Otro marcador').addTo(markersLayer);
+
+        // Agrega las capas al mapa
+        osmLayer.addTo(map);
+        osmHOT.addTo(map);
+        googleStreets.addTo(map);
+
+        // Crea un objeto de control de capas
+        var baseLayers = {
+        "GoogleStreet": googleStreets,
+        "OpenStreetMapHT": osmHOT,
+        "OpenStreetMap": osmLayer,
+        };
+
+        var overlays = {
+            "Marcadores": markersLayer
+        };
+
+        // Agrega el control de capas al mapa
+        L.control.layers(baseLayers, overlays, { collapsed: true }).addTo(map);
+
+
+
+        var rutaCoordenadas = [
+            [
+            27.474748422982742,
+             -99.52863080822446
+          ],
+          [
+
+            27.481027013682777,
+            -99.52875388559002
+          ],
+          [
+
+            27.480999716236994,
+            -99.52700003312248
+          ],
+          [
+
+            27.48397509802473,
+            -99.52706157180526
+          ],
+          [
+
+            27.48389320785833,
+            -99.51752307592648
+          ],
+          [
+
+            27.48334727186078,
+            -99.51749230658446,
+          ]
+
+        ];
+
+        var ruta = L.polyline(rutaCoordenadas, { color: 'blue', weight: 5 }).addTo(map);
+
+        // Marcadores en los puntos de inicio y final
+        L.marker(rutaCoordenadas[0]).addTo(map).bindPopup('Inicio');
+        L.marker(rutaCoordenadas[rutaCoordenadas.length - 1]).addTo(map).bindPopup('Fin');
+
+
+
+
+</script>
 </body>
 </html>

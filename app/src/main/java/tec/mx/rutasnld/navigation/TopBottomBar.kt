@@ -1,6 +1,7 @@
 package tec.mx.rutasnld.navigation
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -27,7 +28,11 @@ fun BottomBar(
 ) {
     val currentRoute = CurrentRoute(navController)
 
-    BottomNavigation(backgroundColor = Color(161,21,59,)) {
+    BottomNavigation(
+        backgroundColor = Color(161,21,59,),
+       // modifier = Modifier.height(60.dp)
+    )
+    {
         screens.forEach { screen ->
             BottomNavigationItem(
                 icon = {
@@ -61,7 +66,7 @@ fun CustomTopBar(navController: NavHostController, screens: List<BottomBarItems>
     TopAppBar(
         title = {
             Text(
-                text = "RutasNLD 🚍 - " + currentScreen?.title,
+                text = ""+currentScreen?.title,
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp
