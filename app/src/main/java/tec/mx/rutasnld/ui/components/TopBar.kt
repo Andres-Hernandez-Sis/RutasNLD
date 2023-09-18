@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import tec.mx.rutasnld.R
+import tec.mx.rutasnld.currentRoute
 import tec.mx.rutasnld.navigation.BottomBarItems
 
 @Composable

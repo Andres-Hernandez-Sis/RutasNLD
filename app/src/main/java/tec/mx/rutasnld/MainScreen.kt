@@ -1,4 +1,4 @@
-package tec.mx.rutasnld.ui.components
+package tec.mx.rutasnld
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -13,6 +13,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import tec.mx.rutasnld.navigation.BottomBarItems
 import tec.mx.rutasnld.navigation.BottomNavGraph
+import tec.mx.rutasnld.navigation.SplashScreen
+import tec.mx.rutasnld.ui.components.BottomBar
+import tec.mx.rutasnld.ui.components.CustomTopBar
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,7 +28,6 @@ fun MainScreen(){
         BottomBarItems.Rutas,
         BottomBarItems.Otros
     )
-
     Scaffold(
         topBar = {
             CustomTopBar(navController = navController, screens = navigationItems)

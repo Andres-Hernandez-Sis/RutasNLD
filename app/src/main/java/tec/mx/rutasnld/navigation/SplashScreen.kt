@@ -1,11 +1,9 @@
-package tec.mx.rutasnld.ui.screens
+package tec.mx.rutasnld.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
-import tec.mx.rutasnld.navigation.BottomBarItems
 import tec.mx.rutasnld.ui.components.Splash
 
 @Composable

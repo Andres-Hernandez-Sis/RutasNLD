@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import tec.mx.rutasnld.ui.screens.SplashScreen
 import tec.mx.rutasnld.ui.screens.map.MapScreen
 import tec.mx.rutasnld.ui.screens.info.InfoScreen
 import tec.mx.rutasnld.ui.screens.ruta.RutaScreen

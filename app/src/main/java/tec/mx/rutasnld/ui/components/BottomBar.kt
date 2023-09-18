@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import tec.mx.rutasnld.currentRoute
 import tec.mx.rutasnld.navigation.BottomBarItems
 
 @Composable
