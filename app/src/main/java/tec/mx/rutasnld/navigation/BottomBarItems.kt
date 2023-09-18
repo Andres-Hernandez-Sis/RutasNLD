@@ -1,10 +1,11 @@
 package tec.mx.rutasnld.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.ui.graphics.vector.ImageVector
 import tec.mx.rutasnld.R
 
+sealed class ScreenRoot( val route : String)
+{
+    object  SplashScreen : ScreenRoot("Splash")
+}
 sealed class BottomBarItems(
     val route: String,
     val title: String,
@@ -26,5 +27,6 @@ sealed class BottomBarItems(
         icon = R.drawable.otros
     )
 }
+
 
 

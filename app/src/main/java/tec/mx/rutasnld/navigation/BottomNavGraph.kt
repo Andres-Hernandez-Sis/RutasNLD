@@ -4,16 +4,23 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import tec.mx.rutasnld.screens.MapScreen
-import tec.mx.rutasnld.screens.OtherScreen
-import tec.mx.rutasnld.screens.RutaScreen
+import tec.mx.rutasnld.ui.screens.SplashScreen
+import tec.mx.rutasnld.ui.screens.map.MapScreen
+import tec.mx.rutasnld.ui.screens.info.InfoScreen
+import tec.mx.rutasnld.ui.screens.ruta.RutaScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController){
     NavHost(
         navController = navController,
-        startDestination = BottomBarItems.Home.route)
+        startDestination = ScreenRoot.SplashScreen.route)
     {
+        composable(ScreenRoot.SplashScreen.route){
+            SplashScreen(navController)
+        }
+        composable(route = BottomBarItems.Home.route){
+            MapScreen()
+        }
         composable(route = BottomBarItems.Home.route){
             MapScreen()
         }
@@ -21,7 +28,8 @@ fun BottomNavGraph(navController: NavHostController){
             RutaScreen()
         }
         composable(route = BottomBarItems.Otros.route){
-            OtherScreen()
+            InfoScreen()
         }
     }
 }
+

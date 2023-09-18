@@ -1,4 +1,4 @@
-package tec.mx.rutasnld.screens
+package tec.mx.rutasnld.ui.screens.map
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -12,10 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 @Composable
 fun MapScreen() {
+    val viewModel: MapViewModel = viewModel()
     LeafletMap()
 }
 

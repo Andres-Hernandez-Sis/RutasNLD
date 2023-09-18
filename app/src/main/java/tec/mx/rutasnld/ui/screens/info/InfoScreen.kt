@@ -1,11 +1,11 @@
-package tec.mx.rutasnld.screens
+package tec.mx.rutasnld.ui.screens.info
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun OtherScreen() {
+fun InfoScreen() {
     Column {
         Text(text = "Pantalla extra")
     }
