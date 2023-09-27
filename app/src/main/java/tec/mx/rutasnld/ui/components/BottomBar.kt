@@ -22,7 +22,7 @@ fun BottomBar(
 ) {
     val currentRoute = currentRoute(navController)
     BottomNavigation(
-        backgroundColor = Color(161,21,59)
+        backgroundColor = Color(115, 12, 44)
     )
     {
         screens.forEach { screen ->

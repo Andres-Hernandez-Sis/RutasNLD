@@ -1,4 +1,4 @@
-package tec.mx.rutasnld.ui.screens.ruta
+package tec.mx.rutasnld.ui.screens.rutas
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize

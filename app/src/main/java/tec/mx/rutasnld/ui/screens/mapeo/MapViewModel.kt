@@ -1,4 +1,4 @@
-package tec.mx.rutasnld.ui.screens.map
+package tec.mx.rutasnld.ui.screens.mapeo
 
 import androidx.lifecycle.ViewModel
 

@@ -4,7 +4,7 @@ import tec.mx.rutasnld.R
 
 sealed class ScreenRoot( val route : String)
 {
-    object  SplashScreen : ScreenRoot("Splash")
+    object  SplashScreen : ScreenRoot("SplashScreen")
 }
 sealed class BottomBarItems(
     val route: String,
@@ -24,7 +24,7 @@ sealed class BottomBarItems(
     object Otros: BottomBarItems(
         route = "otros",
         title = "Información",
-        icon = R.drawable.otros
+        icon = R.drawable.info
     )
 }
 

@@ -1,4 +1,4 @@
-package tec.mx.rutasnld.ui.screens.ruta
+package tec.mx.rutasnld.ui.screens.rutas
 
 import androidx.lifecycle.ViewModel
 

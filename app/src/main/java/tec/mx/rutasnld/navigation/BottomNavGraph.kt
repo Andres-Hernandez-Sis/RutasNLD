@@ -4,9 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import tec.mx.rutasnld.ui.screens.map.MapScreen
+import tec.mx.rutasnld.ui.screens.mapeo.MapScreen
 import tec.mx.rutasnld.ui.screens.info.InfoScreen
-import tec.mx.rutasnld.ui.screens.ruta.RutaScreen
+import tec.mx.rutasnld.ui.screens.rutas.RutaScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController){
@@ -14,7 +14,7 @@ fun BottomNavGraph(navController: NavHostController){
         navController = navController,
         startDestination = ScreenRoot.SplashScreen.route)
     {
-        composable(ScreenRoot.SplashScreen.route){
+        composable(route = ScreenRoot.SplashScreen.route){
             SplashScreen(navController)
         }
         composable(route = BottomBarItems.Home.route){

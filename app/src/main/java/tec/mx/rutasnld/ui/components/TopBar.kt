@@ -28,27 +28,26 @@ fun CustomTopBar(
 ) {
     val currentRoute = currentRoute(navController)
     val currentScreen = screens.find { it.route == currentRoute }
-
     TopAppBar(
         title = {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.logot), // Reemplaza con el recurso de tu imagen
+                    painter = painterResource(id = R.drawable.iconot), // Reemplaza con el recurso de tu imagen
                     contentDescription = "Logo",
                     modifier = Modifier.size(30.dp),
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "" + currentScreen?.title,
+                    text = currentScreen?.title ?: "RutasNLD",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp
                 )
             }
         },
-        backgroundColor = Color(161, 21, 59),
+        backgroundColor = Color(115, 12, 44),
         contentColor = MaterialTheme.colors.onPrimary,
     )
 }
