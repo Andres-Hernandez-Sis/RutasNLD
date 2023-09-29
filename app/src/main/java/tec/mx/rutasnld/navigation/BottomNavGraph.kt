@@ -12,11 +12,11 @@ import tec.mx.rutasnld.ui.screens.rutas.RutaScreen
 fun BottomNavGraph(navController: NavHostController){
     NavHost(
         navController = navController,
-        startDestination = ScreenRoot.SplashScreen.route)
+        startDestination = BottomBarItems.Home.route)
     {
-        composable(route = ScreenRoot.SplashScreen.route){
-            SplashScreen(navController)
-        }
+//        composable(route = ScreenRoot.SplashScreen.route){
+//            SplashScreen(navController)
+//        }
         composable(route = BottomBarItems.Home.route){
             MapScreen()
         }
@@ -24,7 +24,7 @@ fun BottomNavGraph(navController: NavHostController){
             MapScreen()
         }
         composable(route = BottomBarItems.Rutas.route){
-            RutaScreen()
+            RutaScreen(navController)
         }
         composable(route = BottomBarItems.Otros.route){
             InfoScreen()

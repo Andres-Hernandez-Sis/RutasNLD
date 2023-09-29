@@ -70,13 +70,16 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    //Splash
+    implementation("androidx.core:core-splashscreen:1.0.1")
     // Navigation Compose
-    implementation("androidx.navigation:navigation-compose:2.7.2")
+    implementation("androidx.navigation:navigation-compose:2.7.3")
     //Material
-    implementation("androidx.compose.material:material:1.5.0")
+    implementation("androidx.compose.material:material:1.5.1")
     //VM
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     // API Splash
     implementation("androidx.core:core-splashscreen:1.0.1")
+
 
 }

@@ -572,12 +572,260 @@
                 }
             ]
         };
-        L.geoJSON(geojsonFeature, { color: 'green', weight: 5 }).bindPopup('Ruta Mirador X Panteon').addTo(map);
+        L.geoJSON(geojsonFeature, { color: 'purple', weight: 5 }).bindPopup('Ruta Mirador Panteon').addTo(map);
 
+<!--        var userLocationMarker = null;-->
+<!--        var destinationMarker = L.marker([-99.50532591390994,27.48046278124238], { draggable: true }).addTo(map);-->
+<!--        destinationMarker.bindPopup("Destino", { className: 'red-popup' }).openPopup();-->
+<!--        var initialPolyline = L.polyline([destinationMarker.getLatLng(), destinationMarker.getLatLng()], { color: 'blue' }).addTo(map);-->
+<!--        initialPolyline.setLatLngs([e.latlng, destinationMarker.getLatLng()]);-->
+<!--        destinationMarker.on('dragend', function (event) {-->
+<!--            var newDestinationLatLng = event.target.getLatLng();-->
+<!--            // Actualiza la línea cuando el usuario mueve el marcador de destino-->
+<!--            initialPolyline.setLatLngs([userLocationMarker.getLatLng(), newDestinationLatLng]);-->
+<!--        });-->
 
+// Agrega la ruta GeoJSON al mapa
+    var geojsonFeature1 = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                                    [
+                                      -99.50895863767163,
+                                      27.492104992983613
+                                    ],
+                                    [
+                                      -99.51186835386265,
+                                      27.492100669474524
+                                    ],
+                                    [
+                                      -99.5118172970438,
+                                      27.493902411505005
+                                    ],
+                                    [
+                                      -99.52101233121263,
+                                      27.494078129805644
+                                    ],
+                                    [
+                                      -99.5212111338693,
+                                      27.494806115496488
+                                    ],
+                                    [
+                                      -99.5238759171978,
+                                      27.494351684452283
+                                    ],
+                                    [
+                                      -99.52599617003011,
+                                      27.49502299567763
+                                    ],
+                                    [
+                                      -99.53645065413342,
+                                      27.49525349029834
+                                    ],
+                                    [
+                                      -99.53652245788497,
+                                      27.4905249630053
+                                    ],
+                                    [
+                                      -99.5474376324369,
+                                      27.49067923507272
+                                    ],
+                                    [
+                                      -99.55050407528663,
+                                      27.49093041928805
+                                    ],
+                                    [
+                                      -99.55256571564496,
+                                      27.49117644089972
+                                    ],
+                                    [
+                                      -99.55451560344173,
+                                      27.49099485197793
+                                    ],
+                                    [
+                                      -99.55443818120209,
+                                      27.49467239451984
+                                    ],
+                                    [
+                                      -99.56761783311944,
+                                      27.495011510706277
+                                    ],
+                                    [
+                                      -99.565979519901,
+                                      27.5011771408452
+                                    ],
+                                    [
+                                      -99.56538879191426,
+                                      27.503207395824717
+                                    ],
+                                    [
+                                      -99.56563736063386,
+                                      27.503298180320684
+                                    ],
+                                    [
+                                      -99.5656773058169,
+                                      27.503800857630196
+                                    ],
+                                    [
+                                      -99.56880147345228,
+                                      27.503774919329132
+                                    ],
+                                    [
+                                      -99.56879560359326,
+                                      27.5100263825246
+                                    ],
+                                    [
+                                      -99.56525715475851,
+                                      27.510035028134396
+                                    ],
+                                    [
+                                      -99.56516942462164,
+                                      27.511539353897803
+                                    ],
+                                    [
+                                      -99.56888333373013,
+                                      27.511556644878922
+                                    ],
+                                    [
+                                      -99.56891730384254,
+                                      27.51547055408743
+                                    ],
+                                    [
+                                      -99.56472473179218,
+                                      27.515531215170554
+                                    ],
+                                    [
+                                      -99.56475397517096,
+                                      27.51693172501247
+                                    ]
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                                    [
+                                      -99.56222929680104,
+                                      27.516879854594706
+                                    ],
+                                    [
+                                      -99.56232677473028,
+                                      27.515470698911358
+                                    ],
+                                    [
+                                      -99.56889290188491,
+                                      27.51553986015118
+                                    ],
+                                    [
+                                      -99.56894293532312,
+                                      27.511536344557868
+                                    ],
+                                    [
+                                      -99.56521927842226,
+                                      27.51157957200678
+                                    ],
+                                    [
+                                      -99.56519003504349,
+                                      27.5100406643637
+                                    ],
+                                    [
+                                      -99.56887470077264,
+                                      27.51003201875433
+                                    ],
+                                    [
+                                      -99.5688420179574,
+                                      27.50375868976971
+                                    ],
+                                    [
+                                      -99.56537180367259,
+                                      27.50379327417481
+                                    ],
+                                    [
+                                      -99.56530669319542,
+                                      27.503216025050236
+                                    ],
+                                    [
+                                      -99.56395174997766,
+                                      27.50319873275835
+                                    ],
+                                    [
+                                      -99.5641021360299,
+                                      27.49871216752439
+                                    ],
+                                    [
+                                      -99.5643629717484,
+                                      27.494896142016316
+                                    ],
+                                    [
+                                      -99.5544697598397,
+                                      27.494699429501495
+                                    ],
+                                    [
+                                      -99.55451542227749,
+                                      27.491931461475758
+                                    ],
+                                    [
+                                      -99.54129516396206,
+                                      27.491688167510958
+                                    ],
+                                    [
+                                      -99.53654592847893,
+                                      27.491385519584398
+                                    ],
+                                    [
+                                      -99.5364387027562,
+                                      27.49336568185427
+                                    ],
+                                    [
+                                      -99.5165873904407,
+                                      27.49306326432655
+                                    ],
+                                    [
+                                      -99.51185186130361,
+                                      27.49306856624078
+                                    ],
+                                    [
+                                      -99.51185186130361,
+                                      27.494555830285265
+                                    ],
+                                    [
+                                      -99.50876879506475,
+                                      27.494539827918487
+                                    ],
+                                    [
+                                      -99.50891501195865,
+                                      27.492153277846015
+                                    ]
+                    ]
+                }
+            }
+        ]
+    };
 
+        // Crea una capa GeoJSON para la ruta roja
+        var redLayer = L.geoJSON(geojsonFeature1.features[0], { color: 'red' }).addTo(map);
 
+        // Crea una capa GeoJSON para la ruta azul
+        var blueLayer = L.geoJSON(geojsonFeature1.features[1], { color: 'blue' }).addTo(map);
 
+        // Crea una capa GeoJSON para ambas rutas (roja y azul)
+        var bothLayers = L.layerGroup([redLayer, blueLayer]);
+
+        // Configura un control de capas para alternar entre las capas
+        var baseLayers = {
+            "Solo Rojo": redLayer,
+            "Solo Azul": blueLayer,
+            "Ambos": bothLayers
+        };
+        L.control.layers(baseLayers).addTo(map);
 </script>
 </body>
 </html>

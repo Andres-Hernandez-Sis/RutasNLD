@@ -15,19 +15,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import tec.mx.rutasnld.R
 
-@Composable
-fun Splash() {
-    Column(
-        modifier = Modifier.fillMaxSize().background(Color(115, 12, 44)),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "LogoSplash1",
-            modifier = Modifier.fillMaxWidth().padding(40.dp)
-        )
-    }
-}
+//@Composable
+//fun Splash() {
+//    Column(
+//        modifier = Modifier.fillMaxSize().background(Color(115, 12, 44)),
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//        verticalArrangement = Arrangement.Center,
+//    ) {
+//        Image(
+//            painter = painterResource(id = R.drawable.logo),
+//            contentDescription = "LogoSplash1",
+//            modifier = Modifier.fillMaxWidth().padding(40.dp)
+//        )
+//    }
+//}
 
 

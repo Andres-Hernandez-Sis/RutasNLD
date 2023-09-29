@@ -13,22 +13,22 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.delay
-import tec.mx.rutasnld.ui.components.Splash
+//import tec.mx.rutasnld.ui.components.Splash
 
-@Composable
-fun SplashScreen(navController: NavHostController) {
-    LaunchedEffect(key1 = true) {
-        delay(3000)
-        navController.popBackStack() // Para borrar el registro de navegación, para que no se pueda ir de nuevo hacia atrás
-        navController.navigate(route = BottomBarItems.Home.route)
-    }
-
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        // Contenido de la pantalla de inicio aquí
-        Splash()
-    }
-}
+//@Composable
+//fun SplashScreen(navController: NavHostController) {
+//    LaunchedEffect(key1 = true) {
+//        delay(3000)
+//        navController.popBackStack() // Para borrar el registro de navegación, para que no se pueda ir de nuevo hacia atrás
+//        navController.navigate(route = BottomBarItems.Home.route)
+//    }
+//
+//    Box(
+//        modifier = Modifier.fillMaxSize(),
+//        contentAlignment = Alignment.Center
+//    ) {
+//        // Contenido de la pantalla de inicio aquí
+//        Splash()
+//    }
+//}
 
