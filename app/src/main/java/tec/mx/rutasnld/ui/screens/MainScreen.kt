@@ -1,4 +1,4 @@
-package tec.mx.rutasnld
+package tec.mx.rutasnld.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import tec.mx.rutasnld.location.LocationScreen
 import tec.mx.rutasnld.navigation.BottomBarItems
 import tec.mx.rutasnld.navigation.BottomNavGraph
 import tec.mx.rutasnld.ui.components.BottomBar
@@ -22,7 +23,6 @@ import tec.mx.rutasnld.ui.components.CustomTopBar
 @Composable
 fun MainScreen(){
     val navController = rememberNavController()
-
     val navigationItems = listOf(
         BottomBarItems.Home,
         BottomBarItems.Rutas,

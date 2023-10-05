@@ -1,5 +1,6 @@
 package tec.mx.rutasnld.ui.screens.mapeo
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModel
 
 class MapViewModel : ViewModel(){
 
+    @SuppressLint("JavascriptInterface")
     @Composable
     fun LeafletMap() {
         // Verificar la conexión a Internet
@@ -43,7 +45,6 @@ class MapViewModel : ViewModel(){
             },
             update = { webView ->
                 webView.clearCache(true)
-                //webView.clearHistory()
             }
         )
     }
