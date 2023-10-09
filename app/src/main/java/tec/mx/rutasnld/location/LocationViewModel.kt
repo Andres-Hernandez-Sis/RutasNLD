@@ -1,43 +1,48 @@
 package tec.mx.rutasnld.location
 
-import android.annotation.SuppressLint
-import android.app.Application
-import android.location.Location
-import androidx.core.location.LocationManagerCompat.getCurrentLocation
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.util.Timer
-import java.util.TimerTask
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModel
+import com.google.android.gms.location.LocationServices
 
-//class LocationViewModel(application: Application) : AndroidViewModel(application) {
-//
-//    private val locationLiveData = MutableLiveData<Location?>()
-//    val location: LiveData<Location?> = locationLiveData
-//
-//    init {
-//        // Inicializa la ubicación cuando se crea el ViewModel
-//        updateLocation()
-//        // Actualiza la ubicación cada 30 segundos (ajusta el intervalo según tus necesidades)
-//        val timer = Timer()
-//        timer.scheduleAtFixedRate(object : TimerTask() {
-//            override fun run() {
-//                updateLocation()
-//            }
-//        }, 0, 30000)
-//    }
-//
-//    @SuppressLint("MissingPermission")
-//    private fun updateLocation() {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val location = getCurrentLocation(getApplication())
-//            withContext(Dispatchers.Main) {
-//                locationLiveData.value = location
-//            }
-//        }
-//    }
-//}
+class LocationViewModel : ViewModel(){
+    fun checkLocationPermission(context: Context): Boolean {
+        return ContextCompat.checkSelfPermission(
+            context,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    fun getCurrentLocation(context: Context, callback: (Double, Double) -> Unit) {
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+        if (ActivityCompat.checkSelfPermission(
+                context, // Utiliza el contexto proporcionado
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                context, // Utiliza el contexto proporcionado
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // aquí para solicitar los permisos que faltan y manejar la respuesta en la actividad.
+            return
+        }
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location ->
+                if (location != null) {
+                    val lat = location.latitude
+                    val long = location.longitude
+                    callback(lat, long)
+                }
+            }
+            .addOnFailureListener { exception ->
+                // Maneja el error de obtención de ubicación
+                exception.printStackTrace()
+            }
+    }
+
+}
+
+

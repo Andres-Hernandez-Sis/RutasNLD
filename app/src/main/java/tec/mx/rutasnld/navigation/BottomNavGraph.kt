@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import tec.mx.rutasnld.ui.screens.mapeo.MapScreen
 import tec.mx.rutasnld.ui.screens.info.InfoScreen
+import tec.mx.rutasnld.ui.screens.mapeo.MapViewModel
 import tec.mx.rutasnld.ui.screens.rutas.RutaScreen
 
 @Composable
@@ -18,10 +19,7 @@ fun BottomNavGraph(navController: NavHostController){
 //            SplashScreen(navController)
 //        }
         composable(route = BottomBarItems.Home.route){
-            MapScreen()
-        }
-        composable(route = BottomBarItems.Home.route){
-            MapScreen()
+            MapScreen(mapViewModel = MapViewModel())
         }
         composable(route = BottomBarItems.Rutas.route){
             RutaScreen(navController)

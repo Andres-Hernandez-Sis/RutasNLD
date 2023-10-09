@@ -22,11 +22,15 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 @Composable
 fun RutaScreen(navController: NavHostController) {
-    val viewModel : RutaViewModel = viewModel()
+
+    //val viewModel : RutaViewModel = viewModel()
+
     val navController = rememberNavController()
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
@@ -65,7 +69,7 @@ fun RutaScreen(navController: NavHostController) {
                 title = "Mirador Panteon",
                 buttonText = "Abrir Mapa",
                 onButtonClick = {
-                    navController.navigate("mapMiradorPanteon")
+                    navController.navigate(NavRoutes.ROUTE_RUTA_MIRADOR_PANTEON)
                 }
             )
         }
@@ -87,11 +91,12 @@ fun RutaScreen(navController: NavHostController) {
                 title = "Mina Voluntad",
                 buttonText = "Abrir Mapa",
                 onButtonClick = {
-                    navController.navigate("mapMiradorPanteon")
+                    ///
                 }
             )
         }
     }
+
 }
 @Composable
 fun CustomizableList(
@@ -121,6 +126,7 @@ fun CustomizableList(
     }
 }
 
+
 @Composable
 fun RutaMiradorPanteon() {
     AndroidView(
@@ -137,4 +143,27 @@ fun RutaMiradorPanteon() {
             }
         }
     )
+}
+
+
+object NavRoutes {
+    const val ROUTE_RUTA_SCREEN = "ruta_screen"
+    const val ROUTE_RUTA_MIRADOR_PANTEON = "ruta_mirador_panteon"
+}
+
+@Composable
+fun AppNavigator() {
+    val navController = rememberNavController()
+
+    NavHost(
+        navController = navController,
+        startDestination = NavRoutes.ROUTE_RUTA_SCREEN
+    ) {
+        composable(NavRoutes.ROUTE_RUTA_SCREEN) {
+            RutaScreen(navController)
+        }
+        composable(NavRoutes.ROUTE_RUTA_MIRADOR_PANTEON) {
+            RutaMiradorPanteon()
+        }
+    }
 }

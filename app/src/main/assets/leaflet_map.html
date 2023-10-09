@@ -20,10 +20,12 @@
         </style>
 </head>
 <body>
-<div id="map" style="width: 100%; height: 900px;"></div>
-<script>
-var map = L.map('map').setView([27.4665175,-99.5266303], 13); // El segundo valor es el zoom.
-
+<div id="map" style="width: 100%; height: 500px;"></div>
+<!--<div id="map" style="width: 100%; height: 900px;"></div>-->
+<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
+<input type="button" value="Ubicacion" onClick="sendLocationToMap()" />
+<script type="text/javascript">
+            var map = L.map('map').setView([27.4665175,-99.5266303], 13); // El segundo valor es el zoom.
             var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
             var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png');
             var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{maxZoom: 20,subdomains:['mt0','mt1','mt2','mt3']});
@@ -45,14 +47,25 @@ var map = L.map('map').setView([27.4665175,-99.5266303], 13); // El segundo valo
             };
             L.control.layers(baseLayers, overlays, { collapsed: true }).addTo(map);
 
-            L.marker([27.480925, -99.515360]).bindPopup('Marcador').addTo(markersLayer);
-            L.marker([27.490000, -99.525000]).bindPopup('Otro marcador').addTo(markersLayer);
+            L.marker([27.480925, -99.515360]).bindPopup('Punto Importante').addTo(markersLayer);
+            L.marker([27.490000, -99.525000]).bindPopup('Punto Comercial').addTo(markersLayer);
 
-            // Define una función JavaScript para enviar las coordenadas a Android
-            function sendCoordinates(lat, long) {
-                Android.sendCoordinates(lat, long);
+            var currentLocationMarker;
+
+            function sendLocationToMap(lat, long) {
+                if (!currentLocationMarker) {
+                    currentLocationMarker = L.marker([lat, long]).addTo(map);
+                } else {
+                    currentLocationMarker.setLatLng([lat, long]);
+                }
+                map.setView([lat, long], 13);
+
             }
 
+
+            function showAndroidToast(toast) {
+            Android.showToast(toast);
+            }
 
 
 </script>

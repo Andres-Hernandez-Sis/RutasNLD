@@ -2,13 +2,12 @@ package tec.mx.rutasnld.ui.screens.mapeo
 
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
-import tec.mx.rutasnld.location.LocationScreen
+import tec.mx.rutasnld.location.LocationViewModel
+import tec.mx.rutasnld.location.ShowPersmissionAndLocation
 
 @Composable
-fun MapScreen() {
-    val viewModel: MapViewModel = viewModel()
-    viewModel.LeafletMap()
-    LocationScreen()
+fun MapScreen(mapViewModel: MapViewModel) {
+    mapViewModel.LeafletMap()
+    ShowPersmissionAndLocation(viewModel = LocationViewModel())
 }
 
