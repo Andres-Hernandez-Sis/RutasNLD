@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun ShowPersmissionAndLocation(viewModel: LocationViewModel) {
+fun ShowPermissionAndLocation(viewModel: LocationViewModel) {
     val context = LocalContext.current
     var location by remember { mutableStateOf("Ubicación desconocida") }
 
@@ -65,3 +65,41 @@ fun ShowPersmissionAndLocation(viewModel: LocationViewModel) {
 
 }
 
+
+// Prebas
+//@Composable
+//fun ShowPersmissionAndLocation(viewModel: LocationViewModel): Pair<Double, Double>? {
+//    val context = LocalContext.current
+//    var location: Pair<Double, Double>? by remember { mutableStateOf(null) }
+//
+//    // Create a permission launcher
+//    val requestPermissionLauncher =
+//        rememberLauncherForActivityResult(
+//            contract = ActivityResultContracts.RequestPermission(),
+//            onResult = { isGranted: Boolean ->
+//                if (isGranted) {
+//                    // Permission granted, update the location
+//                    viewModel.getCurrentLocation { lat, long ->
+//                        // Asigna la latitud y longitud como un par
+//                        location = Pair(lat, long)
+//                    }
+//                }
+//            })
+//
+//    val hasLocationPermission = viewModel.checkLocationPermission(context)
+//
+//    if (!hasLocationPermission) {
+//        // Si no se ha otorgado el permiso, solicitarlo directamente
+//        LaunchedEffect(hasLocationPermission) {
+//            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+//        }
+//    } else {
+//        // Si ya se otorgó el permiso, obtener la ubicación actual
+//        viewModel.getCurrentLocation{ lat, long ->
+//            // Asigna la latitud y longitud como un par
+//            location = Pair(lat, long)
+//        }
+//    }
+//
+//    return location
+//}

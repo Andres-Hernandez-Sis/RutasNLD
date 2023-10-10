@@ -22,8 +22,10 @@
 <body>
 <div id="map" style="width: 100%; height: 500px;"></div>
 <!--<div id="map" style="width: 100%; height: 900px;"></div>-->
-<input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
 <input type="button" value="Ubicacion" onClick="sendLocationToMap()" />
+<input type="button" value="Marcar la ubicacion" onClick="getLocationAndPassToJavaScript()" />
+<input type="button" value="Get from android" onClick="getForAndroid()" />
+
 <script type="text/javascript">
             var map = L.map('map').setView([27.4665175,-99.5266303], 13); // El segundo valor es el zoom.
             var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
@@ -52,21 +54,31 @@
 
             var currentLocationMarker;
 
-            function sendLocationToMap(lat, long) {
+
+            //De que el metodo funciona, funciona
+            function getLocationAndPassToJavaScript(lat = 0, long = 0) {
                 if (!currentLocationMarker) {
                     currentLocationMarker = L.marker([lat, long]).addTo(map);
                 } else {
                     currentLocationMarker.setLatLng([lat, long]);
                 }
                 map.setView([lat, long], 13);
-
             }
 
-
-            function showAndroidToast(toast) {
-            Android.showToast(toast);
-            }
-
+            // Define una función para actualizar la ubicación en el mapa
+<!--            function getLocationAndPassToJavaScript(lat, long) {-->
+<!--                if (lat != undefined && long != undefined) {-->
+<!--                    map.setView([lat, long], 13);-->
+<!--                    L.marker([27.480925, -99.515360]).bindPopup('no es undefined').addTo(markersLayer);-->
+<!--                }-->
+<!--                else if (lat != null && long != null) {-->
+<!--                    map.setView([lat, long], 13);-->
+<!--                    L.marker([27.490000, -99.525000]).bindPopup('no es nulo').addTo(markersLayer);-->
+<!--                }-->
+<!--                 else{-->
+<!--                    currentLocationMarker = L.marker([27.480925, -99.515360]).bindPopup('no es undefined ni es nulo').addTo(map);-->
+<!--                }-->
+<!--            }-->
 
 </script>
 </body>

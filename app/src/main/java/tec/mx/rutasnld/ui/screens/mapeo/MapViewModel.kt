@@ -1,5 +1,6 @@
 package tec.mx.rutasnld.ui.screens.mapeo
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -10,22 +11,23 @@ import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.ViewModel
+import tec.mx.rutasnld.location.LocationViewModel
 
 
 class MapViewModel : ViewModel() {
 
+    @SuppressLint("StaticFieldLeak")
+    private lateinit var webView: WebView
+
 
     @Composable
     fun LeafletMap() {
-
-        val infoDialog = remember { mutableStateOf(false) }
 
         // Verificar la conexión a Internet
         val context = LocalContext.current
@@ -42,22 +44,49 @@ class MapViewModel : ViewModel() {
                     webViewClient = WebViewClient()
                     settings.javaScriptEnabled = true
 
-                    addJavascriptInterface(WebAppInterface(context,infoDialog), "Mensaje")
-                    //addJavascriptInterface(WebInterface(), "Enviar Ubicacion")
-
                     if (isConnected) {
                         loadUrl("file:///android_asset/leaflet_map.html") // Ruta al archivo HTML de Leaflet
                     } else {
                         loadUrl("file:///android_asset/connection_error.html")
-                        Toast.makeText(context, "Verifica la conexión a internet", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            context,
+                            "Verifica la conexión a internet",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
-
             },
             update = { webView ->  // Asigna la referencia del WebView una vez que está creado
                 webView.clearCache(true)
             }
         )
+
+        fun getLocationAndPassToJavaScript(context: Context, callback: (Double, Double) -> Unit) {
+            val locationViewModel = LocationViewModel()
+            val context = context
+            if (locationViewModel.checkLocationPermission(context)) {
+                locationViewModel.getCurrentLocation(context) { lat, long ->
+                    if (lat != null && long != null) {
+                        val javascriptCode = "updateLocation($lat, $long)"
+                        webView.post { webView.evaluateJavascript(javascriptCode, null) }
+                    }
+                }
+            }
+        }
+
+        //Prueba (abajo)
+//        fun getLocationAndPassToJavaScript(callback: (Double, Double) -> Unit) {
+//                // En lugar de obtener la ubicación actual, usa coordenadas de prueba
+//                val latTest =  27.480623
+//                val longTest = -99.5371145
+//                callback(latTest, longTest) // Llama al callback con las coordenadas de prueba
+//
+//                // También puedes enviar las coordenadas a JavaScript si es necesario
+//                val javascriptCode = "updateLocation($latTest, $longTest)"
+//                webView.post { webView.evaluateJavascript(javascriptCode, null) }
+//        }
+
+
     }
 
     private fun isNetworkAvailable(context: Context): Boolean {
@@ -71,18 +100,4 @@ class MapViewModel : ViewModel() {
         }
     }
 }
-
-
-
-
-
-class WebAppInterface(private val mContext: Context, private val infoDialog: MutableState<Boolean>) {
-    @JavascriptInterface
-    fun showToast(toast: String) {
-        infoDialog.value = true
-        Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show()
-    }
-}
-
-
 

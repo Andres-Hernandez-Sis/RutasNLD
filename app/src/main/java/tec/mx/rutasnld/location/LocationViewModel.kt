@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.location.LocationServices
 
 class LocationViewModel : ViewModel(){
+
     fun checkLocationPermission(context: Context): Boolean {
         return ContextCompat.checkSelfPermission(
             context,
@@ -21,10 +22,12 @@ class LocationViewModel : ViewModel(){
         if (ActivityCompat.checkSelfPermission(
                 context, // Utiliza el contexto proporcionado
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            )
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 context, // Utiliza el contexto proporcionado
                 Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
+            )
+            != PackageManager.PERMISSION_GRANTED
         ) {
             // aquí para solicitar los permisos que faltan y manejar la respuesta en la actividad.
             return
@@ -42,6 +45,16 @@ class LocationViewModel : ViewModel(){
                 exception.printStackTrace()
             }
     }
+
+    //Prueba
+//    fun getCurrentLocation(callback: (Double, Double) -> Unit) {
+//        // Define coordenadas de prueba (San Francisco, por ejemplo)
+//        val latTest =  27.480623
+//        val longTest = -99.5371145
+//        // Llama al callback con las coordenadas de prueba
+//        callback(latTest, longTest)
+//    }
+
 
 }
 
