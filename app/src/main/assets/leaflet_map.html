@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Leaflet Map</title>
-    <!-- Incluye la biblioteca Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <style>
@@ -20,14 +19,9 @@
         </style>
 </head>
 <body>
-<div id="map" style="width: 100%; height: 500px;"></div>
-<!--<div id="map" style="width: 100%; height: 900px;"></div>-->
-<input type="button" value="Ubicacion" onClick="sendLocationToMap()" />
-<input type="button" value="Marcar la ubicacion" onClick="getLocationAndPassToJavaScript()" />
-<input type="button" value="Get from android" onClick="getForAndroid()" />
-
+<div id="map" style="width: 100%; height: 100vh;"></div>
 <script type="text/javascript">
-            var map = L.map('map').setView([27.4665175,-99.5266303], 13); // El segundo valor es el zoom.
+            var map = L.map('map').setView([27.4665175,-99.5266303], 13);
             var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
             var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png');
             var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{maxZoom: 20,subdomains:['mt0','mt1','mt2','mt3']});
@@ -43,42 +37,29 @@
             };
 
             var markersLayer = L.layerGroup();
+            var ubicacionLayer = L.layerGroup();
 
             var overlays = {
                 "Marcadores": markersLayer
             };
             L.control.layers(baseLayers, overlays, { collapsed: true }).addTo(map);
-
             L.marker([27.480925, -99.515360]).bindPopup('Punto Importante').addTo(markersLayer);
             L.marker([27.490000, -99.525000]).bindPopup('Punto Comercial').addTo(markersLayer);
 
             var currentLocationMarker;
 
-
-            //De que el metodo funciona, funciona
-            function getLocationAndPassToJavaScript(lat = 37.42199833333335, long = -122.08400000000002) {
-                if (!currentLocationMarker) {
-                    currentLocationMarker = L.marker([lat, long]).addTo(map);
-                } else {
-                    currentLocationMarker.setLatLng([lat, long]);
+            function getLocationAndPassToJavaScript(lat, long) {
+            console.log("Latitud:", lat);
+            console.log("Longitud:", long);
+                if( map ){
+                    if (lat != undefined && long != undefined) {
+                        map.setView([lat, long], 13);
+                        L.marker([lat, long]).bindPopup('Ubicacion Actual').addTo(map);
+                        L.marker([27.480925, -99.515360]).bindPopup('Punto Importante').addTo(markersLayer);
+                        L.marker([27.490000, -99.525000]).bindPopup('Punto Comercial').addTo(markersLayer);
+                    }
                 }
-                map.setView([lat, long], 13);
             }
-
-            // Define una función para actualizar la ubicación en el mapa
-<!--            function getLocationAndPassToJavaScript(lat, long) {-->
-<!--                if (lat != undefined && long != undefined) {-->
-<!--                    map.setView([lat, long], 13);-->
-<!--                    L.marker([27.480925, -99.515360]).bindPopup('no es undefined').addTo(markersLayer);-->
-<!--                }-->
-<!--                else if (lat != null && long != null) {-->
-<!--                    map.setView([lat, long], 13);-->
-<!--                    L.marker([27.490000, -99.525000]).bindPopup('no es nulo').addTo(markersLayer);-->
-<!--                }-->
-<!--                 else{-->
-<!--                    currentLocationMarker = L.marker([27.480925, -99.515360]).bindPopup('no es undefined ni es nulo').addTo(map);-->
-<!--                }-->
-<!--            }-->
 
 </script>
 </body>

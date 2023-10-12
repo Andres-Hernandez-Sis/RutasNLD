@@ -46,16 +46,6 @@ class LocationViewModel : ViewModel(){
             }
     }
 
-    //Prueba
-//    fun getCurrentLocation(callback: (Double, Double) -> Unit) {
-//        // Define coordenadas de prueba (San Francisco, por ejemplo)
-//        val latTest =  27.480623
-//        val longTest = -99.5371145
-//        // Llama al callback con las coordenadas de prueba
-//        callback(latTest, longTest)
-//    }
-
-
 }
 
 
