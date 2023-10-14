@@ -11,56 +11,123 @@
                 margin: 0;
                 padding: 0;
             }
-
             #map{
                 width: 100%;
                 height: 100vh;
             }
-        </style>
+            .custom-location-marker {
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            border-radius: 50%;
+            }
+    </style>
 </head>
 <body>
-<div id="map" style="width: 100%; height: 100vh;"></div>
+<div id="map"></div>
 <script type="text/javascript">
-            var map = L.map('map').setView([27.4665175,-99.5266303], 13);
+
+            // Esto sirve para deliminar el area de carga del mapa, en este caso, nuevo laredo.
+            var southWest = L.latLng(27.400, -99.600);
+            var northEast = L.latLng(27.550, -99.450);
+            var bounds = L.latLngBounds(southWest, northEast);
+
+            var map = L.map('map', {
+                center: [27.475, -99.525],
+                zoom: 13,
+                maxBounds: bounds,
+                detectRetina: true
+            });
+
             var osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
             var osmHOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png');
-            var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{maxZoom: 20,subdomains:['mt0','mt1','mt2','mt3']});
+            var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            });
 
             osmLayer.addTo(map);
             osmHOT.addTo(map);
             googleStreets.addTo(map);
 
             var baseLayers = {
-            "GoogleStreet": googleStreets,
-            "OpenStreetMapHT": osmHOT,
-            "OpenStreetMap": osmLayer,
+                "GoogleStreet": googleStreets,
+                "OpenStreetMapHT": osmHOT,
+                "OpenStreetMap": osmLayer,
             };
 
             var markersLayer = L.layerGroup();
-            var ubicacionLayer = L.layerGroup();
 
             var overlays = {
                 "Marcadores": markersLayer
             };
             L.control.layers(baseLayers, overlays, { collapsed: true }).addTo(map);
+
+
+            // Puntos X en el mapa
             L.marker([27.480925, -99.515360]).bindPopup('Punto Importante').addTo(markersLayer);
             L.marker([27.490000, -99.525000]).bindPopup('Punto Comercial').addTo(markersLayer);
+
+            var circleRadius = 500; // Eadio del círculo en metros
+
+            var destinationMarker = L.marker([27.4656252,-99.5492313], { draggable: true }).addTo(map);
+            destinationMarker.bindPopup("Destino").openPopup();
+
+            // Círculo alrededor del marcador de destino
+            var destinationCircle = L.circle(destinationMarker.getLatLng(), {
+                color: 'blue',
+                fillColor: '#f03',
+                fillOpacity: 0.2,
+                radius: circleRadius
+            }).addTo(map);
+
+            var initialPolyline;
+
+            var customIcon = L.icon({
+                iconUrl: 'currentlocationicon.png', // Ruta de tu imagen personalizada
+                iconSize: [40, 40], // Tamaño del ícono
+                iconAnchor: [20, 40], // Punto de anclaje del ícono
+                popupAnchor: [0, -40] // Punto de anclaje del popup
+            });
 
             var currentLocationMarker;
 
             function getLocationAndPassToJavaScript(lat, long) {
-            console.log("Latitud:", lat);
-            console.log("Longitud:", long);
-                if( map ){
-                    if (lat != undefined && long != undefined) {
+                console.log("Latitud:", lat);
+                console.log("Longitud:", long);
+                if (map) {
+                    if (lat !== undefined && long !== undefined) {
                         map.setView([lat, long], 13);
-                        L.marker([lat, long]).bindPopup('Ubicacion Actual').addTo(map);
-                        L.marker([27.480925, -99.515360]).bindPopup('Punto Importante').addTo(markersLayer);
-                        L.marker([27.490000, -99.525000]).bindPopup('Punto Comercial').addTo(markersLayer);
+                        if (currentLocationMarker) {
+                            currentLocationMarker.setLatLng([lat, long]);
+                        } else {
+                            currentLocationMarker = L.marker([lat, long], { icon: customIcon }).bindPopup('Ubicacion Actual').addTo(map);
+                        }
+
+                        if (destinationMarker && currentLocationMarker) {
+                            if (initialPolyline) {
+                                map.removeLayer(initialPolyline);
+                            }
+                            initialPolyline = L.polyline([destinationMarker.getLatLng(), currentLocationMarker.getLatLng()], { color: 'blue' }).addTo(map);
+                        }
                     }
                 }
             }
 
+
+
+            // Evento que se dispara cuando el usuario arrastra el marcador de destino
+            destinationMarker.on('move', function (event) {
+                var newDestinationLatLng = event.latlng;
+                if (currentLocationMarker) {
+                    if (initialPolyline) {
+                        map.removeLayer(initialPolyline);
+                    }
+                    initialPolyline = L.polyline([newDestinationLatLng, currentLocationMarker.getLatLng()], { color: 'blue' }).addTo(map);
+                    // Actualizar la posición del círculo alrededor del marcador de destino
+                    destinationCircle.setLatLng(newDestinationLatLng);
+                }
+            });
 </script>
 </body>
 </html>
