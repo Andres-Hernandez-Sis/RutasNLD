@@ -52,11 +52,11 @@ fun LeafletMap(networkViewModel: NetworkViewModel) {
             },
             update = { webView ->
                 globalWebView = webView
-
+                // Añade un WebViewClient personalizado para detectar cuándo la página ha terminado de cargar
                 webView.webViewClient = object : WebViewClient() {
                     override fun onPageFinished(view: WebView?, url: String?) {
                         mapLoaded = true
-
+                        // Verifica si el mapa ha cargado y llama a JavaScript
                         if (mapLoaded) {
                             val locationViewModel = LocationViewModel()
                             if (locationViewModel.checkLocationPermission(context)) {
@@ -67,7 +67,7 @@ fun LeafletMap(networkViewModel: NetworkViewModel) {
                         }
                     }
                 }
-
+                // Llama a la función JavaScript para obtener la ubicación si el mapa ya ha cargado
                 if (mapLoaded) {
                     val locationViewModel = LocationViewModel()
                     if (locationViewModel.checkLocationPermission(context)) {

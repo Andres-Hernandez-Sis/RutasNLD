@@ -15,11 +15,12 @@
                 width: 100%;
                 height: 100vh;
             }
+            <!--linea que une los puntos-->
             .custom-location-marker {
             width: 20px;
             height: 20px;
-            background-color: blue;
-            border-radius: 50%;
+            background-color: orange;
+            border-radius: 30%;
             }
     </style>
 </head>
@@ -68,20 +69,27 @@
             L.marker([27.480925, -99.515360]).bindPopup('Punto Importante').addTo(markersLayer);
             L.marker([27.490000, -99.525000]).bindPopup('Punto Comercial').addTo(markersLayer);
 
-            var circleRadius = 500; // Eadio del círculo en metros
+            var customIconDestino = L.icon({
+                iconUrl: 'busicon.png', // Ruta de tu imagen personalizada
+                iconSize: [40, 40], // Tamaño del ícono
+                iconAnchor: [20, 40], // Punto de anclaje del ícono
+                popupAnchor: [0, -40] // Punto de anclaje del popup
+            });
 
-            var destinationMarker = L.marker([27.4656252,-99.5492313], { draggable: true }).addTo(map);
+            var destinationMarker = L.marker([27.4656252,-99.5492313], { draggable: true, icon: customIconDestino }).addTo(map);
             destinationMarker.bindPopup("Destino").openPopup();
 
+
+            var circleRadius = 400; // Radio del círculo en metros
             // Círculo alrededor del marcador de destino
             var destinationCircle = L.circle(destinationMarker.getLatLng(), {
-                color: 'blue',
+                color: 'orange',
                 fillColor: '#f03',
                 fillOpacity: 0.2,
                 radius: circleRadius
             }).addTo(map);
 
-            var initialPolyline;
+            var initialPolyline
 
             var customIcon = L.icon({
                 iconUrl: 'currentlocationicon.png', // Ruta de tu imagen personalizada
@@ -89,6 +97,8 @@
                 iconAnchor: [20, 40], // Punto de anclaje del ícono
                 popupAnchor: [0, -40] // Punto de anclaje del popup
             });
+
+
 
             var currentLocationMarker;
 
@@ -108,13 +118,11 @@
                             if (initialPolyline) {
                                 map.removeLayer(initialPolyline);
                             }
-                            initialPolyline = L.polyline([destinationMarker.getLatLng(), currentLocationMarker.getLatLng()], { color: 'blue' }).addTo(map);
+                            initialPolyline = L.polyline([destinationMarker.getLatLng(), currentLocationMarker.getLatLng()], { color: 'orange' }).addTo(map);
                         }
                     }
                 }
             }
-
-
 
             // Evento que se dispara cuando el usuario arrastra el marcador de destino
             destinationMarker.on('move', function (event) {
@@ -123,7 +131,7 @@
                     if (initialPolyline) {
                         map.removeLayer(initialPolyline);
                     }
-                    initialPolyline = L.polyline([newDestinationLatLng, currentLocationMarker.getLatLng()], { color: 'blue' }).addTo(map);
+                    initialPolyline = L.polyline([newDestinationLatLng, currentLocationMarker.getLatLng()], { color: 'orange' }).addTo(map);
                     // Actualizar la posición del círculo alrededor del marcador de destino
                     destinationCircle.setLatLng(newDestinationLatLng);
                 }
@@ -131,3 +139,4 @@
 </script>
 </body>
 </html>
+
