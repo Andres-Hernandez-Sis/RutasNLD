@@ -1,5 +1,6 @@
 package tec.mx.rutasnld.ui.screens.mapeo
 
+import android.annotation.SuppressLint
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -16,6 +17,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
 import tec.mx.rutasnld.location.LocationViewModel
 import tec.mx.rutasnld.network.NetworkViewModel
+@SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun LeafletMap(networkViewModel: NetworkViewModel) {
 

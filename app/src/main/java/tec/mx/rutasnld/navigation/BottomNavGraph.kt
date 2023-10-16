@@ -7,23 +7,27 @@ import androidx.navigation.compose.composable
 import tec.mx.rutasnld.ui.screens.mapeo.MapScreen
 import tec.mx.rutasnld.ui.screens.info.InfoScreen
 import tec.mx.rutasnld.network.NetworkViewModel
-import tec.mx.rutasnld.ui.screens.rutas.RutaScreen
+import tec.mx.rutasnld.ui.screens.rutas.RutasScreen
 
 @Composable
-fun BottomNavGraph(navController: NavHostController){
+fun BottomNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = BottomBarItems.Home.route)
-    {
-        composable(route = BottomBarItems.Home.route){
+        startDestination = BottomBarItems.Home.route,
+        route = ROOT_ROUTE
+    ) {
+        composable(route = BottomBarItems.Home.route) {
             MapScreen(networkViewModel = NetworkViewModel())
         }
-        composable(route = BottomBarItems.Rutas.route){
-            RutaScreen(navController)
-        }
-        composable(route = BottomBarItems.Otros.route){
+
+        composable(route = BottomBarItems.Info.route) {
             InfoScreen()
         }
+
+        composable(route = BottomBarItems.Rutas.route) {
+            RutasScreen()
+        }
+
     }
 }
 

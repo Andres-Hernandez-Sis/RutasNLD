@@ -2,12 +2,14 @@ package tec.mx.rutasnld.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -22,6 +24,14 @@ fun BottomBar(
 ) {
     val currentRoute = currentRoute(navController)
     BottomNavigation(
+        modifier = Modifier
+            .graphicsLayer {
+                shape = RoundedCornerShape(
+                    topStart = 10.dp,
+                    topEnd = 10.dp
+                )
+                clip = true
+            },
         backgroundColor = Color(115, 12, 44)
     )
     {
