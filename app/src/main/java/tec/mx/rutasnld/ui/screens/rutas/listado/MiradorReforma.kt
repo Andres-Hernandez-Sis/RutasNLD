@@ -22,7 +22,7 @@ fun MiradorReforma() {
                 )
                 settings.javaScriptEnabled = true
                 webViewClient = WebViewClient()
-                loadUrl("file:///android_asset/MiradorReforma.html") // Ruta al archivo HTML de Leaflet
+                loadUrl("file:///android_asset/rutas/MiradorReforma.html") // Ruta al archivo HTML de Leaflet
             }
         }
     )

@@ -22,7 +22,7 @@ fun VeinteNoviembreValles() {
                 )
                 settings.javaScriptEnabled = true
                 webViewClient = WebViewClient()
-                loadUrl("file:///android_asset/20NoviembreValles.html") // Ruta al archivo HTML de Leaflet
+                loadUrl("file:///android_asset/rutas/20NoviembreValles.html") // Ruta al archivo HTML de Leaflet
             }
         }
     )

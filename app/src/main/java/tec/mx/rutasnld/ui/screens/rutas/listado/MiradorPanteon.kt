@@ -28,7 +28,7 @@ fun MiradorPanteon() {
                 )
                 settings.javaScriptEnabled = true
                 webViewClient = WebViewClient()
-                loadUrl("file:///android_asset/MiradorPanteon.html") // Ruta al archivo HTML de Leaflet
+                loadUrl("file:///android_asset/rutas/MiradorPanteon.html") // Ruta al archivo HTML de Leaflet
             }
         }
     )
