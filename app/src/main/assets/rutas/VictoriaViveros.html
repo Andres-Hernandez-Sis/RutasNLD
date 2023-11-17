@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+            body{
+                margin: 0;
+                padding: 0;
+            }
+            #map{
+                width: 100%;
+                height: 100vh;
+            }
+    </style>
+</head>
+<body>
+<div id='map'></div>
+<script type="text/javascript">
+    const map = L.map('map').setView([27.47629, -99.51639], 12);
+    const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom: 19}).addTo(map);
+
+
+    // Agrega la ruta GeoJSON al mapa
+    var geojsonFeature = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#ff0000",
+        "stroke-width": 2,
+        "stroke-opacity": 1
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -99.50939491110968,
+            27.492105729111316
+          ],
+          [
+            -99.50989711420466,
+            27.49210974254862
+          ],
+          [
+            -99.50986091938663,
+            27.49301677559143
+          ],
+          [
+            -99.50516278753402,
+            27.492945411791894
+          ],
+          [
+            -99.5016659478378,
+            27.492857380899224
+          ],
+          [
+            -99.49867246528828,
+            27.49280936963305
+          ],
+          [
+            -99.49568983147059,
+            27.49281426795922
+          ],
+          [
+            -99.48981791307098,
+            27.492745804619787
+          ],
+          [
+            -99.48990009490386,
+            27.489221857016233
+          ],
+          [
+            -99.48992994178688,
+            27.487549527260455
+          ],
+          [
+            -99.48992898979449,
+            27.48751932019708
+          ],
+          [
+            -99.48992982305938,
+            27.487509299230695
+          ],
+          [
+            -99.48509435181286,
+            27.48741952072328
+          ],
+          [
+            -99.48515401563635,
+            27.483504894627316
+          ],
+          [
+            -99.48606580688107,
+            27.48377031130174
+          ],
+          [
+            -99.48638992017533,
+            27.483715016214447
+          ],
+          [
+            -99.4919295283882,
+            27.483755800953773
+          ],
+          [
+            -99.4947733033654,
+            27.483827983401113
+          ]
+        ],
+        "type": "LineString"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "stroke": "#0037ff",
+        "stroke-width": 2,
+        "stroke-opacity": 1
+      },
+      "geometry": {
+        "coordinates": [
+          [
+            -99.49477921871797,
+            27.483829047481194
+          ],
+          [
+            -99.50372591004995,
+            27.483899989004257
+          ],
+          [
+            -99.50377501661245,
+            27.486629992329625
+          ],
+          [
+            -99.50677828061735,
+            27.486639116412334
+          ],
+          [
+            -99.50680240132807,
+            27.488898738546865
+          ],
+          [
+            -99.50677349889163,
+            27.49299340768772
+          ],
+          [
+            -99.5035299163087,
+            27.492884859486708
+          ],
+          [
+            -99.50354542527015,
+            27.493801893182123
+          ],
+          [
+            -99.50605715309331,
+            27.493806410522538
+          ],
+          [
+            -99.50885524491517,
+            27.493868718394864
+          ],
+          [
+            -99.50895569365507,
+            27.492101819553156
+          ],
+          [
+            -99.50939304473265,
+            27.492105999085496
+          ]
+        ],
+        "type": "LineString"
+      },
+      "id": 1
+    }
+  ]
+}
+
+    // Crea una capa GeoJSON para la ruta roja
+    var redLayer = L.geoJSON(geojsonFeature.features[0], { color: 'red' }).addTo(map);
+
+    // Crea una capa GeoJSON para la ruta azul
+    var blueLayer = L.geoJSON(geojsonFeature.features[1], { color: 'blue' }).addTo(map);
+
+    // Crea una capa GeoJSON para ambas rutas (roja y azul)
+    var bothLayers = L.layerGroup([redLayer, blueLayer]);
+
+    // Configura un control de capas para alternar entre las capas
+    var baseLayers = {
+        "Inicia del centro": redLayer,
+        "Retorno hacia centro": blueLayer,
+        "Ambos": bothLayers
+    };
+
+    L.control.layers(baseLayers).addTo(map);
+</script>
+
+</body>
+</html>
+

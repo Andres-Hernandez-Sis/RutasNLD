@@ -23,7 +23,6 @@
     const map = L.map('map').setView([27.47629, -99.51639], 12);
     const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom: 19}).addTo(map);
 
-
     // Agrega la ruta GeoJSON al mapa
     var geojsonFeature = {
             "type": "FeatureCollection",
@@ -656,8 +655,8 @@
 
     // Configura un control de capas para alternar entre las capas
     var baseLayers = {
-        "Solo Rojo": redLayer,
-        "Solo Azul": blueLayer,
+        "Inicia del centro": redLayer,
+        "Retorno hacia centro": blueLayer,
         "Ambos": bothLayers
     };
 
