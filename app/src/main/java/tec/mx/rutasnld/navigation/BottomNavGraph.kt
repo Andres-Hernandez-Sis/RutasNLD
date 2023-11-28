@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import tec.mx.rutasnld.ui.screens.mapeo.MapScreen
+import tec.mx.rutasnld.ui.screens.mapeinteractivo.MapScreen
 import tec.mx.rutasnld.ui.screens.info.InfoScreen
 import tec.mx.rutasnld.network.NetworkViewModel
 import tec.mx.rutasnld.ui.screens.rutas.RutasScreen

@@ -52,15 +52,15 @@ fun ShowPermissionAndLocation(viewModel: LocationViewModel) {
     }
 
     // Mostrar las coordenadas en la esquina inferior izquierda
-    Box(
-        modifier = Modifier.fillMaxSize()
-    ) {
-        Text(
-            text = location,
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(2.dp)
-        )
-    }
+//    Box(
+//        modifier = Modifier.fillMaxSize()
+//    ) {
+//        Text(
+//            text = location,
+//            modifier = Modifier
+//                .align(Alignment.BottomStart)
+//                .padding(2.dp)
+//        )
+//    }
 
 }

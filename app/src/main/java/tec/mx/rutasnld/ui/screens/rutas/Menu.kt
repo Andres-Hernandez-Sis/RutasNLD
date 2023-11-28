@@ -155,7 +155,7 @@ fun getRutaItemFromString(ruta: String): RutasItems? {
     return when (ruta) {
         "20 de noviembre Campanario" -> RutasItems.VeinteNoviembreCampanario
         "20 de Noviembre Valles" -> RutasItems.VeinteNoviembreValles
-        "Cavasos Lerma" -> RutasItems.CavazosLerma
+        "Cavazos Lerma" -> RutasItems.CavazosLerma
         "Conalep 150 Aniversario" -> RutasItems.Conalep150Aniversario
         "Conalep Campanario" -> RutasItems.ConalepCampanario
         "Conalep Reservas" -> RutasItems.ConalepReservas

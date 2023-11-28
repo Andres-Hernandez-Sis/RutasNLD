@@ -1,4 +1,4 @@
-package tec.mx.rutasnld.ui.screens.mapeo
+package tec.mx.rutasnld.ui.screens.mapeinteractivo
 
 
 import androidx.compose.runtime.Composable
